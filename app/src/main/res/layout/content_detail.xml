@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="?attr/background">
 
     <ImageView
         android:id="@+id/ivImageBlur"
@@ -10,8 +11,9 @@
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/ivImage"
         android:layout_marginBottom="0dp"
-        android:background="@android:color/darker_gray"
-        android:scaleType="centerCrop"/>
+        tools:background="@android:color/darker_gray"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/ivImage"
@@ -19,8 +21,9 @@
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:src="@color/base"
-        android:elevation="1dp"/>
+        tools:src="@color/base"
+        android:elevation="1dp"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/black"
+            android:textColor="?android:attr/textColor"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Title" />
@@ -53,12 +56,13 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_baseline_date"/>
+                    android:src="@drawable/ic_baseline_date"
+                    tools:ignore="ContentDescription" />
                 <TextView
                     android:id="@+id/tvReleaseDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Release Data" />
@@ -67,12 +71,13 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_baseline_genre"/>
+                    android:src="@drawable/ic_baseline_genre"
+                    tools:ignore="ContentDescription" />
                 <TextView
                     android:id="@+id/tvGenre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Genre" />
@@ -81,12 +86,13 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_baseline_duration"/>
+                    android:src="@drawable/ic_baseline_duration"
+                    tools:ignore="ContentDescription" />
                 <TextView
                     android:id="@+id/tvDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="00:00" />
@@ -95,16 +101,17 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_baseline_network"/>
+                    android:src="@drawable/ic_baseline_network"
+                    tools:ignore="ContentDescription" />
                 <ImageView
                     android:id="@+id/ivNetwork"
                     android:layout_width="37dp"
                     android:layout_height="27dp"
-                    android:src="@color/black"
-                    android:layout_gravity="left"/>
+                    tools:src="@color/black"
+                    android:layout_gravity="left"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
             </TableRow>
         </TableLayout>
-
 
         <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/cpbUserScore"
@@ -129,11 +136,12 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="5dp"
             android:layout_toStartOf="@+id/cpbUserScore"
-            android:text="USER\nSCORE"
+            android:text="@string/user_nscore"
             android:textAlignment="textEnd"
             android:textColor="#35d07a"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/tvKilasan"
@@ -141,12 +149,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
             android:layout_marginTop="17dp"
-            android:textColor="#808080"
+            android:textColor="?android:attr/textColor"
             android:textSize="14sp"
             android:textStyle="bold"
             tools:text="Descripion" />
-
-
 
     </RelativeLayout>
 

@@ -20,7 +20,7 @@ class TVShowAdapter : RecyclerView.Adapter<TVShowAdapter.TVShowHolder>() {
         listTVShow.addAll(tvshows)
     }
 
-    class TVShowHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class TVShowHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(tvshow: TVShowEntity) {
             with (binding) {
                 tvTitle.text = tvshow.title

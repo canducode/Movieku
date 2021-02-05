@@ -20,7 +20,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
         listMovies.addAll(movies)
     }
 
-    class MovieHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MovieHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movies: MovieEntity) {
             with(binding) {
                 tvTitle.text = movies.title
