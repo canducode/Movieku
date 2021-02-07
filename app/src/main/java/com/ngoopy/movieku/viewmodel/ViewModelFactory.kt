@@ -6,6 +6,7 @@ import com.ngoopy.movieku.data.source.MoviekuRepository
 import com.ngoopy.movieku.di.Injection
 import com.ngoopy.movieku.ui.detail.DetailViewModel
 import com.ngoopy.movieku.ui.movie.MovieViewModel
+import com.ngoopy.movieku.ui.tv_show.TVShowViewModel
 
 class ViewModelFactory private constructor(private val mMoviekuRepository: MoviekuRepository) : ViewModelProvider.NewInstanceFactory() {
     companion object {
@@ -23,6 +24,9 @@ class ViewModelFactory private constructor(private val mMoviekuRepository: Movie
         when {
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
                 return MovieViewModel(mMoviekuRepository) as T
+            }
+            modelClass.isAssignableFrom(TVShowViewModel::class.java) -> {
+                return TVShowViewModel(mMoviekuRepository) as T
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 return DetailViewModel(mMoviekuRepository) as T

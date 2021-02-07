@@ -33,7 +33,6 @@ class DetailActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             val type = extras.getString(EXTRA_TYPE,"TV Show")
-            val position = extras.getInt(EXTRA_THEID,0)
             binding.toolbarDetail.title = "Detail $type"
 
             val theId = extras.getInt(EXTRA_THEID)
@@ -44,7 +43,11 @@ class DetailActivity : AppCompatActivity() {
                     }
                 })
             } else {
-                setTVShow(viewModel.getTVShow(position))
+                viewModel.getTVShow(theId).observe(this, {
+                    if (it != null) {
+                        setTVShow(it)
+                    }
+                })
             }
         }
     }

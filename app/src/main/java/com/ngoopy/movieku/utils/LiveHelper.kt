@@ -4,9 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ngoopy.movieku.data.Entity.ListMoviesEntity
+import com.ngoopy.movieku.data.Entity.ListTVShowsEntity
 import com.ngoopy.movieku.data.Entity.MovieEntity
+import com.ngoopy.movieku.data.Entity.TVShowEntity
 import com.ngoopy.movieku.data.source.remote.response.DetailMovieResponse
+import com.ngoopy.movieku.data.source.remote.response.DetailTVShowResponse
 import com.ngoopy.movieku.data.source.remote.response.ListPopularMoviesResponse
+import com.ngoopy.movieku.data.source.remote.response.ListPopularTVShowsResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,5 +81,71 @@ class LiveHelper {
             Log.e(TAG, e.message.toString())
         }
         return movie
+    }
+
+    fun loadPopularTVShows() : LiveData<List<ListTVShowsEntity>> {
+        val list = MutableLiveData<List<ListTVShowsEntity>>()
+        try {
+            ApiConfig.getApiService().getPopularTVShows()
+                .enqueue(object : Callback<ListPopularTVShowsResponse> {
+                    override fun onFailure(call: Call<ListPopularTVShowsResponse>, t: Throwable) {
+                        Log.e(TAG, t.message.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<ListPopularTVShowsResponse>,
+                        response: Response<ListPopularTVShowsResponse>
+                    ) {
+                        val tvshows = ArrayList<ListTVShowsEntity>()
+                        for (responses in response.body()?.results!!) {
+                            tvshows.add(ListTVShowsEntity(
+                                responses.id,
+                                responses.name,
+                                responses.firstAirDate,
+                                "$BASE_IMAGE_URL${responses.posterPath}",
+                            ))
+                        }
+                        list.postValue(tvshows)
+                    }
+                })
+        } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
+        }
+        return list
+    }
+
+    fun loadDetailTVShow(theId: Int) : LiveData<TVShowEntity> {
+        val tvshow = MutableLiveData<TVShowEntity>()
+        try {
+            ApiConfig.getApiService().getDetailTVShow(theId)
+                .enqueue(object : Callback<DetailTVShowResponse> {
+                    override fun onFailure(call: Call<DetailTVShowResponse>, t: Throwable) {
+                        Log.e(TAG, t.message.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<DetailTVShowResponse>,
+                        response: Response<DetailTVShowResponse>
+                    ) {
+                        tvshow.postValue(
+                            TVShowEntity(
+                                "$BASE_IMAGE_URL${response.body()?.posterPath.toString()}",
+                                response.body()?.name.toString(),
+                                response.body()?.genres?.get(0)?.name.toString(),
+                                Duration().toPrint(
+                                    response.body()?.episodeRunTime?.get(0)!!.toInt()
+                                ),
+                                response.body()?.overview.toString(),
+                                response.body()?.status.toString(),
+                                "$BASE_IMAGE_URL${response.body()?.networks?.get(0)?.logoPath.toString()}",
+                                response.body()?.voteAverage?.times(10)!!.toFloat()
+                            )
+                        )
+                    }
+                })
+        } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
+        }
+        return tvshow
     }
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ngoopy.movieku.databinding.FragmentTvShowBinding
+import com.ngoopy.movieku.viewmodel.ViewModelFactory
 
 class TVShowFragment : Fragment() {
     private var _binding: FragmentTvShowBinding? = null
@@ -24,13 +25,18 @@ class TVShowFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TVShowViewModel::class.java]
-            val tvshows = viewModel.getTVShow()
+            val factory = ViewModelFactory.getInstance()
+            val viewModel = ViewModelProvider(this, factory)[TVShowViewModel::class.java]
 
             val tvshowAdapter = TVShowAdapter()
-            tvshowAdapter.setTVShows(tvshows)
+
+            viewModel.getPopularTVShow().observe(viewLifecycleOwner, { tvshows ->
+                if (tvshows != null) {
+                    tvshowAdapter.setTVShows(tvshows)
+                    tvshowAdapter.notifyDataSetChanged()
+                }
+            })
 
             with(binding.rvTvShows) {
                 layoutManager = LinearLayoutManager(context)

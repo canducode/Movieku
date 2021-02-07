@@ -9,5 +9,5 @@ import com.ngoopy.movieku.utils.DataDummy
 
 class DetailViewModel(private val moviekuRepository: MoviekuRepository) : ViewModel() {
     fun getMovie(theId: Int): LiveData<MovieEntity> = moviekuRepository.getDetailMovie(theId)
-    fun getTVShow(position: Int): TVShowEntity = DataDummy.generateDummyTVShow()[position]
+    fun getTVShow(theId: Int): LiveData<TVShowEntity> = moviekuRepository.getDetailTVShow(theId)
 }

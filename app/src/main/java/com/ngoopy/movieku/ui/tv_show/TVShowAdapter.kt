@@ -7,32 +7,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.ngoopy.movieku.R
-import com.ngoopy.movieku.data.Entity.TVShowEntity
+import com.ngoopy.movieku.data.Entity.ListTVShowsEntity
 import com.ngoopy.movieku.databinding.ItemListBinding
 import com.ngoopy.movieku.ui.detail.DetailActivity
 
 class TVShowAdapter : RecyclerView.Adapter<TVShowAdapter.TVShowHolder>() {
-    private var listTVShow = ArrayList<TVShowEntity>()
+    private var listTVShow = ArrayList<ListTVShowsEntity>()
 
-    fun setTVShows(tvshows: List<TVShowEntity>?) {
+    fun setTVShows(tvshows: List<ListTVShowsEntity>?) {
         if (tvshows == null) return
         listTVShow.clear()
         listTVShow.addAll(tvshows)
     }
 
     class TVShowHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(tvshow: TVShowEntity) {
+        fun bind(tvshow: ListTVShowsEntity) {
             with (binding) {
                 tvTitle.text = tvshow.title
-                tvDate.text = tvshow.status
+                tvDate.text = tvshow.first_release_data
                 Glide.with(root.context)
-                    .load(tvshow.image)
+                    .load(tvshow.poster_image)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(ivImage)
 
                 root.setOnClickListener {
                     @Suppress("DEPRECATION") val intentGoToDetail = Intent(root.context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.EXTRA_THEID, position)
+                        putExtra(DetailActivity.EXTRA_THEID, tvshow.id)
                     }
                     root.context.startActivity(intentGoToDetail)
                 }
