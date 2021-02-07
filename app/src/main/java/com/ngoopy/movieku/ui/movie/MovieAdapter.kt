@@ -34,7 +34,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
                 binding.root.setOnClickListener {
                     @Suppress("DEPRECATION") val intentGoToDetail = Intent(root.context, DetailActivity::class.java).apply {
                         putExtra(DetailActivity.EXTRA_TYPE, "Movie")
-                        putExtra(DetailActivity.EXTRA_POSITION, position)
+                        putExtra(DetailActivity.EXTRA_THEID, movies.id)
                     }
                     root.context.startActivity(intentGoToDetail)
                 }

@@ -10,13 +10,14 @@ import com.ngoopy.movieku.R
 import com.ngoopy.movieku.data.Entity.MovieEntity
 import com.ngoopy.movieku.data.Entity.TVShowEntity
 import com.ngoopy.movieku.databinding.ActivityDetailBinding
+import com.ngoopy.movieku.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
 
     companion object {
         const val EXTRA_TYPE = "extra_type"
-        const val EXTRA_POSITION = "extra_position"
+        const val EXTRA_THEID = "extra_THEID"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +27,22 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
         binding.toolbarDetail.setNavigationOnClickListener { finish() }
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+        val factory = ViewModelFactory.getInstance()
+        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
             val type = extras.getString(EXTRA_TYPE,"TV Show")
-            val position = extras.getInt(EXTRA_POSITION,0)
+            val position = extras.getInt(EXTRA_THEID,0)
             binding.toolbarDetail.title = "Detail $type"
 
+            val theId = extras.getInt(EXTRA_THEID)
             if (type == "Movie"){
-                setMovie(viewModel.getMovie(position))
+                viewModel.getMovie(theId).observe(this, {
+                    if (it != null) {
+                        setMovie(it)
+                    }
+                })
             } else {
                 setTVShow(viewModel.getTVShow(position))
             }

@@ -32,7 +32,7 @@ class TVShowAdapter : RecyclerView.Adapter<TVShowAdapter.TVShowHolder>() {
 
                 root.setOnClickListener {
                     @Suppress("DEPRECATION") val intentGoToDetail = Intent(root.context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.EXTRA_POSITION, position)
+                        putExtra(DetailActivity.EXTRA_THEID, position)
                     }
                     root.context.startActivity(intentGoToDetail)
                 }
