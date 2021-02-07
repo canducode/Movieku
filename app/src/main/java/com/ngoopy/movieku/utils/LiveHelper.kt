@@ -32,6 +32,7 @@ class LiveHelper {
                                         responses.title,
                                         responses.releaseDate,
                                         "$BASE_IMAGE_URL${responses.posterPath}",
+
                                 ))
                             }
                             list.postValue(movies)
