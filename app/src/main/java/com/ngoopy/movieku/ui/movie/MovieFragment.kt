@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ngoopy.movieku.databinding.FragmentMovieBinding
+import com.ngoopy.movieku.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment() {
     private var _binding: FragmentMovieBinding? = null
@@ -15,7 +16,6 @@ class MovieFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        // Inflate the layout for this fragment
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -23,11 +23,17 @@ class MovieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MovieViewModel::class.java]
-            val movies = viewModel.getMovies()
+            val factory = ViewModelFactory.getInstance()
+            val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
 
             val movieAdapter = MovieAdapter()
-            movieAdapter.setMovies(movies)
+
+            viewModel.getPopularMovies().observe(viewLifecycleOwner, { movies ->
+                if (movies != null) {
+                    movieAdapter.setMovies(movies)
+                    movieAdapter.notifyDataSetChanged()
+                }
+            })
 
             with(binding.rvMovies) {
                 layoutManager = LinearLayoutManager(context)
