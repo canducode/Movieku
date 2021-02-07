@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ngoopy.movieku.data.Entity.ListMoviesEntity
+import com.ngoopy.movieku.data.Entity.MovieEntity
 import com.ngoopy.movieku.data.source.remote.response.ListPopularMoviesResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,5 +44,14 @@ class LiveHelper {
         }
 
         return list
+    }
+
+    fun loadDetailMovie(theId: Int) : LiveData<MovieEntity> {
+        val movie = MutableLiveData<MovieEntity>()
+        try {
+            ApiConfig.getApiService()
+        } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
+        }
     }
 }
