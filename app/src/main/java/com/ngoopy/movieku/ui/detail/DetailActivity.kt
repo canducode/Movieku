@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.ngoopy.movieku.R
-import com.ngoopy.movieku.data.MovieEntity
-import com.ngoopy.movieku.data.TVShowEntity
+import com.ngoopy.movieku.data.Entity.MovieEntity
+import com.ngoopy.movieku.data.Entity.TVShowEntity
 import com.ngoopy.movieku.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {

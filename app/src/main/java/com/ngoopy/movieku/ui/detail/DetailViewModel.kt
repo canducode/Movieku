@@ -1,8 +1,8 @@
 package com.ngoopy.movieku.ui.detail
 
 import androidx.lifecycle.ViewModel
-import com.ngoopy.movieku.data.MovieEntity
-import com.ngoopy.movieku.data.TVShowEntity
+import com.ngoopy.movieku.data.Entity.MovieEntity
+import com.ngoopy.movieku.data.Entity.TVShowEntity
 import com.ngoopy.movieku.utils.DataDummy
 
 class DetailViewModel : ViewModel() {

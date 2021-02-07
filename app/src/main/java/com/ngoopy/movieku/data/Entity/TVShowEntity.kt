@@ -1,4 +1,4 @@
-package com.ngoopy.movieku.data
+package com.ngoopy.movieku.data.Entity
 
 data class TVShowEntity(
     var image: String,

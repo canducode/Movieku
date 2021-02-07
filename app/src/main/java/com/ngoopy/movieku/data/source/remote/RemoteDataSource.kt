@@ -1,4 +1,4 @@
 package com.ngoopy.movieku.data.source.remote
 
-class RemoteDataSource {
+class RemoteDataSource private constructor(private ){
 }

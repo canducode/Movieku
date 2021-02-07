@@ -1,13 +1,14 @@
 package com.ngoopy.movieku.utils
 
-import com.ngoopy.movieku.data.MovieEntity
-import com.ngoopy.movieku.data.TVShowEntity
+import com.ngoopy.movieku.data.Entity.MovieEntity
+import com.ngoopy.movieku.data.Entity.TVShowEntity
 
 object DataDummy {
     fun generateDummyMovie() : ArrayList<MovieEntity> {
         val movie = ArrayList<MovieEntity>()
 
-        movie.add(MovieEntity(
+        movie.add(
+            MovieEntity(
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tK1zy5BsCt1J4OzoDicXmr0UTFH.jpg",
             "The Croods: A New Age",
             "23 Desember 2020",
@@ -15,9 +16,11 @@ object DataDummy {
                 "01:35",
                 81f,
                 "Keluarga prasejarah The Croods kembali ke shenanigans mereka yang lama di dunia baru yang berbahaya dan aneh."
-        ))
+        )
+        )
 
-        movie.add(MovieEntity(
+        movie.add(
+            MovieEntity(
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/s2PPk1w6p6RhbPrZPizZ90ISdWh.jpg",
             "Honest Thief",
             "16 Oktober 2020",
@@ -25,7 +28,8 @@ object DataDummy {
             "01:38",
             70f,
             "A bank robber tries to turn himself in because he's falling in love and wants to live an honest life...but when he realizes the Feds are more corrupt than him, he must fight back to clear his name."
-        ))
+        )
+        )
 
         movie.add(
             MovieEntity(
@@ -177,7 +181,8 @@ object DataDummy {
                 86f
         )
         )
-        tvShow.add(TVShowEntity(
+        tvShow.add(
+            TVShowEntity(
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
             "Grey's Anatomy",
             "Drama",
@@ -186,7 +191,8 @@ object DataDummy {
             "Berlanjut",
             "https://image.tmdb.org/t/p/h30/ndAvF4JLsliGreX87jAc9GdjmJY.png",
             81f
-        ))
+        )
+        )
         tvShow.add(
             TVShowEntity(
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mYsWyfiIMxx4HDm0Wck7oJ9ckez.jpg",
