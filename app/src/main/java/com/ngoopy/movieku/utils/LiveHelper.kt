@@ -22,12 +22,14 @@ class LiveHelper {
     }
 
     fun loadPopularMovies() : LiveData<List<ListMoviesEntity>> {
+        EspressoIdlingResource.increment()
         val list = MutableLiveData<List<ListMoviesEntity>>()
         try {
             ApiConfig.getApiService().getPopularMovies()
                     .enqueue(object : Callback<ListPopularMoviesResponse> {
                         override fun onFailure(call: Call<ListPopularMoviesResponse>, t: Throwable) {
                             Log.e(TAG, t.message.toString())
+                            EspressoIdlingResource.decrement()
                         }
 
                         override fun onResponse(call: Call<ListPopularMoviesResponse>, response: Response<ListPopularMoviesResponse>) {
@@ -42,6 +44,7 @@ class LiveHelper {
                                 ))
                             }
                             list.postValue(movies)
+                            EspressoIdlingResource.decrement()
                         }
                     })
         } catch (e: Exception) {
@@ -52,12 +55,14 @@ class LiveHelper {
     }
 
     fun loadDetailMovie(theId: Int) : LiveData<MovieEntity> {
+        EspressoIdlingResource.increment()
         val movie = MutableLiveData<MovieEntity>()
         try {
             ApiConfig.getApiService().getDetailMovie(theId)
                 .enqueue(object : Callback<DetailMovieResponse> {
                     override fun onFailure(call: Call<DetailMovieResponse>, t: Throwable) {
                         Log.e(TAG, t.message.toString())
+                        EspressoIdlingResource.decrement()
                     }
 
                     override fun onResponse(
@@ -70,11 +75,12 @@ class LiveHelper {
                                 response.body()?.title.toString(),
                                 response.body()?.releaseDate.toString(),
                                 response.body()?.genres?.get(0)?.name.toString(),
-                                Duration().toPrint(response.body()?.runtime!!.toInt()),
-                                response.body()?.voteAverage?.times(10)!!.toFloat(),
+                                Duration().toPrint(response.body()?.runtime?.toInt()?:0),
+                                response.body()?.voteAverage?.times(10)?.toFloat()?:0f,
                                 response.body()?.overview.toString()
                         )
                         )
+                        EspressoIdlingResource.decrement()
                     }
                 })
         } catch (e: Exception) {
@@ -84,12 +90,14 @@ class LiveHelper {
     }
 
     fun loadPopularTVShows() : LiveData<List<ListTVShowsEntity>> {
+        EspressoIdlingResource.increment()
         val list = MutableLiveData<List<ListTVShowsEntity>>()
         try {
             ApiConfig.getApiService().getPopularTVShows()
                 .enqueue(object : Callback<ListPopularTVShowsResponse> {
                     override fun onFailure(call: Call<ListPopularTVShowsResponse>, t: Throwable) {
                         Log.e(TAG, t.message.toString())
+                        EspressoIdlingResource.decrement()
                     }
 
                     override fun onResponse(
@@ -106,6 +114,7 @@ class LiveHelper {
                             ))
                         }
                         list.postValue(tvshows)
+                        EspressoIdlingResource.decrement()
                     }
                 })
         } catch (e: Exception) {
@@ -115,12 +124,14 @@ class LiveHelper {
     }
 
     fun loadDetailTVShow(theId: Int) : LiveData<TVShowEntity> {
+        EspressoIdlingResource.increment()
         val tvshow = MutableLiveData<TVShowEntity>()
         try {
             ApiConfig.getApiService().getDetailTVShow(theId)
                 .enqueue(object : Callback<DetailTVShowResponse> {
                     override fun onFailure(call: Call<DetailTVShowResponse>, t: Throwable) {
                         Log.e(TAG, t.message.toString())
+                        EspressoIdlingResource.decrement()
                     }
 
                     override fun onResponse(
@@ -141,6 +152,7 @@ class LiveHelper {
                                 response.body()?.voteAverage?.times(10)!!.toFloat()
                             )
                         )
+                        EspressoIdlingResource.decrement()
                     }
                 })
         } catch (e: Exception) {
