@@ -35,6 +35,7 @@ class DetailActivity : AppCompatActivity() {
             val type = extras.getString(EXTRA_TYPE,"TV Show")
             binding.toolbarDetail.title = "Detail $type"
 
+            binding.shimmerLoading.startShimmer()
             val theId = extras.getInt(EXTRA_THEID)
             if (type == "Movie"){
                 viewModel.getMovie(theId).observe(this, {
@@ -66,22 +67,29 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setData(image: String, title: String, release: String, genre: String, duration: String, kilasan: String, user_score: Float) {
-        Glide.with(this)
-            .load(image)
-            .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
-            .into(binding.contentDetail.ivImage)
+        binding.contentDetail.apply {
+            Glide.with(this@DetailActivity)
+                .load(image)
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
+                .into(ivImage)
 
-        Glide.with(this)
-            .load(image)
-            .apply(RequestOptions().override(10,15).placeholder(R.drawable.ic_loading).error(R.drawable.ic_error))
-            .into(binding.contentDetail.ivImageBlur)
+            Glide.with(this@DetailActivity)
+                .load(image)
+                .apply(RequestOptions().override(10,15).placeholder(R.drawable.ic_loading).error(R.drawable.ic_error))
+                .into(ivImageBlur)
 
-        binding.contentDetail.tvTitle.text = title
-        binding.contentDetail.tvReleaseDate.text = release
-        binding.contentDetail.tvGenre.text = genre
-        binding.contentDetail.tvDuration.text = duration
-        binding.contentDetail.tvKilasan.text = kilasan
-        binding.contentDetail.cpbUserScore.progress = user_score
+            tvTitle.text = title
+            tvReleaseDate.text = release
+            tvGenre.text = genre
+            tvDuration.text = duration
+            tvKilasan.text = kilasan
+            cpbUserScore.progress = user_score
+        }
+
+        binding.apply {
+            shimmerLoading.stopShimmer()
+            shimmerLoading.hideShimmer()
+        }
     }
 
 }

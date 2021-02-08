@@ -32,6 +32,7 @@ class MovieFragment : Fragment() {
                 if (movies != null) {
                     movieAdapter.setMovies(movies)
                     movieAdapter.notifyDataSetChanged()
+                    binding.progressBar.visibility = View.GONE
                 }
             })
 

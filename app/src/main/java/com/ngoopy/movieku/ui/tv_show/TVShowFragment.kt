@@ -35,6 +35,7 @@ class TVShowFragment : Fragment() {
                 if (tvshows != null) {
                     tvshowAdapter.setTVShows(tvshows)
                     tvshowAdapter.notifyDataSetChanged()
+                    binding.progressBar.visibility = View.GONE
                 }
             })
 
