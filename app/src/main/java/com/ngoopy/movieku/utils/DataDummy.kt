@@ -1,9 +1,28 @@
 package com.ngoopy.movieku.utils
 
+import com.ngoopy.movieku.data.Entity.ListMoviesEntity
+import com.ngoopy.movieku.data.Entity.ListTVShowsEntity
 import com.ngoopy.movieku.data.Entity.MovieEntity
 import com.ngoopy.movieku.data.Entity.TVShowEntity
+import kotlin.random.Random
 
 object DataDummy {
+
+    fun generateDummyListMovie() : List<ListMoviesEntity> {
+        val movie = ArrayList<ListMoviesEntity>()
+
+        for (i in generateDummyMovie()) {
+            movie.add(ListMoviesEntity(
+                Random.nextInt(1000),
+                i.title,
+                i.release_date,
+                i.image
+            ))
+        }
+
+        return movie
+    }
+
     fun generateDummyMovie() : ArrayList<MovieEntity> {
         val movie = ArrayList<MovieEntity>()
 
@@ -154,7 +173,22 @@ object DataDummy {
         return movie
     }
 
-    fun generateDummyTVShow() : ArrayList<TVShowEntity> {
+    fun generateDummyListTVShow() : List<ListTVShowsEntity> {
+        val tvShow = ArrayList<ListTVShowsEntity>()
+
+        for (i in generateDummyTVShow()) {
+            tvShow.add(ListTVShowsEntity(
+                Random.nextInt(1000),
+                i.title,
+                "${Random.nextInt(30)}/${Random.nextInt(12)}/${Random.nextInt(2000,2020)}",
+                i.image
+            ))
+        }
+
+        return tvShow
+    }
+
+    fun generateDummyTVShow() : List<TVShowEntity> {
         val tvShow = ArrayList<TVShowEntity>()
 
         tvShow.add(
