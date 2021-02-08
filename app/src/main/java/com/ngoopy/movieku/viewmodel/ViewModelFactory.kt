@@ -21,15 +21,15 @@ class ViewModelFactory private constructor(private val mMoviekuRepository: Movie
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        when {
+        return when {
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
-                return MovieViewModel(mMoviekuRepository) as T
+                MovieViewModel(mMoviekuRepository) as T
             }
             modelClass.isAssignableFrom(TVShowViewModel::class.java) -> {
-                return TVShowViewModel(mMoviekuRepository) as T
+                TVShowViewModel(mMoviekuRepository) as T
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
-                return DetailViewModel(mMoviekuRepository) as T
+                DetailViewModel(mMoviekuRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

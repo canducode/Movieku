@@ -21,7 +21,7 @@
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        tools:src="@color/base"
+        android:background="@android:color/darker_gray"
         android:elevation="1dp"
         tools:ignore="ContentDescription" />
 

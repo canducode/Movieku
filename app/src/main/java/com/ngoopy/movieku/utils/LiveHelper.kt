@@ -75,7 +75,7 @@ class LiveHelper {
                                 response.body()?.title.toString(),
                                 response.body()?.releaseDate.toString(),
                                 response.body()?.genres?.get(0)?.name.toString(),
-                                Duration().toPrint(response.body()?.runtime?.toInt()?:0),
+                                Duration().toPrint(response.body()?.runtime?:0),
                                 response.body()?.voteAverage?.times(10)?.toFloat()?:0f,
                                 response.body()?.overview.toString()
                         )
