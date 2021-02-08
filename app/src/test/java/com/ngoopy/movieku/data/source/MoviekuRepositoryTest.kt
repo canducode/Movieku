@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.ngoopy.movieku.data.entity.ListMoviesEntity
 import com.ngoopy.movieku.data.entity.ListTVShowsEntity
 import com.ngoopy.movieku.data.entity.MovieEntity
+import com.ngoopy.movieku.data.entity.TVShowEntity
 import com.ngoopy.movieku.data.source.remote.RemoteDataSource
 import com.ngoopy.movieku.utils.LiveDataTestUtil
 import com.nhaarman.mockitokotlin2.verify
@@ -66,5 +67,25 @@ class MoviekuRepositoryTest {
         verify(remote).getPopularTVShows()
         assertNotNull(tvshowsEntity)
         assertEquals(remoteTVShows.value?.size?.toLong(), tvshowsEntity.value?.size?.toLong())
+    }
+
+    @Test
+    fun getDetailTVShow() {
+        val remoteTVShow = MutableLiveData<TVShowEntity>()
+        `when`(remote.getDetailTVShow(dummyIdTVShow)).thenReturn(remoteTVShow)
+
+        val tvshowEntity = MutableLiveData<TVShowEntity>()
+        tvshowEntity.postValue(LiveDataTestUtil.getValue(moviekuRepository.getDetailTVShow(dummyIdTVShow)))
+
+        verify(remote).getDetailTVShow(dummyIdTVShow)
+        assertNotNull(tvshowEntity)
+        assertEquals(remoteTVShow.value?.image.toString(), tvshowEntity.value?.image.toString())
+        assertEquals(remoteTVShow.value?.title.toString(), tvshowEntity.value?.title.toString())
+        assertEquals(remoteTVShow.value?.genre.toString(), tvshowEntity.value?.genre.toString())
+        assertEquals(remoteTVShow.value?.duration.toString(), tvshowEntity.value?.duration.toString())
+        assertEquals(remoteTVShow.value?.kilasan.toString(), tvshowEntity.value?.kilasan.toString())
+        assertEquals(remoteTVShow.value?.status.toString(), tvshowEntity.value?.status.toString())
+        assertEquals(remoteTVShow.value?.network.toString(), tvshowEntity.value?.network.toString())
+        assertEquals(remoteTVShow.value?.user_score, tvshowEntity.value?.user_score)
     }
 }

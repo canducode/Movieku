@@ -41,7 +41,14 @@ class MainActivityTest {
     @Test
     fun loadDetailMovie() {
         onView(withId(R.id.rvMovies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())) // <- Memilih / Klik view dengan index 0
-        onView(withId(R.id.tvTitle)).check(matches(isDisplayed())) // <- Memeriksa apakah id yang diharapkan tampil
+        // --- Memeriksa apakah id yang diharapkan tampil ---
+        onView(withId(R.id.ivImage)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGenre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvDuration)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvKilasan)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
+        onView(withId(R.id.cpbUserScore)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -56,6 +63,15 @@ class MainActivityTest {
         onView(withText("TV Show")).perform(click()) // <- Memilih / Klik tulisan TV Show
         onView(withId(R.id.rvTvShows)).check(matches(isDisplayed())) // <- Memeriksa apakah view id yang diharapkan tampil
         onView(withId(R.id.rvTvShows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())) // <- Memilih / Klik view dengan index 0
-        onView(withId(R.id.tvTitle)).check(matches(isDisplayed())) // <- Memeriksa apakah id yang diharapkan tampil
+
+        // --- Memeriksa apakah id yang diharapkan tampil ---
+        onView(withId(R.id.ivImage)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGenre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvDuration)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvKilasan)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
+        onView(withId(R.id.ivNetwork)).check(matches(isDisplayed()))
+        onView(withId(R.id.cpbUserScore)).check(matches(isDisplayed()))
     }
 }
