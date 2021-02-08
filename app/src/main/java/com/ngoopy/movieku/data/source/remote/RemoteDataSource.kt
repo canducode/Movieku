@@ -1,10 +1,10 @@
 package com.ngoopy.movieku.data.source.remote
 
 import androidx.lifecycle.LiveData
-import com.ngoopy.movieku.data.Entity.ListMoviesEntity
-import com.ngoopy.movieku.data.Entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.Entity.MovieEntity
-import com.ngoopy.movieku.data.Entity.TVShowEntity
+import com.ngoopy.movieku.data.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.entity.MovieEntity
+import com.ngoopy.movieku.data.entity.TVShowEntity
 import com.ngoopy.movieku.utils.LiveHelper
 
 class RemoteDataSource private constructor(private val liveHelper: LiveHelper){

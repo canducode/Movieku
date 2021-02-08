@@ -1,5 +1,8 @@
 package com.ngoopy.movieku.ui.detail
 
+import androidx.lifecycle.Observer
+import com.ngoopy.movieku.data.entity.MovieEntity
+import com.ngoopy.movieku.data.entity.TVShowEntity
 import com.ngoopy.movieku.data.source.MoviekuRepository
 import com.ngoopy.movieku.utils.DataDummy
 import org.junit.Before
@@ -17,9 +20,16 @@ class DetailViewModelTest {
     @Mock
     private lateinit var moviekuRepository: MoviekuRepository
 
+    @Mock
+    private lateinit var movieObserver: Observer<MovieEntity>
+    
+    @Mock
+    private lateinit var tvshowObserver: Observer<TVShowEntity>
+
     @Before
     fun setUp() {
         viewModel = DetailViewModel(moviekuRepository)
+
     }
 
     @Test

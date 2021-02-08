@@ -3,10 +3,10 @@ package com.ngoopy.movieku.utils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ngoopy.movieku.data.Entity.ListMoviesEntity
-import com.ngoopy.movieku.data.Entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.Entity.MovieEntity
-import com.ngoopy.movieku.data.Entity.TVShowEntity
+import com.ngoopy.movieku.data.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.entity.MovieEntity
+import com.ngoopy.movieku.data.entity.TVShowEntity
 import com.ngoopy.movieku.data.source.remote.response.DetailMovieResponse
 import com.ngoopy.movieku.data.source.remote.response.DetailTVShowResponse
 import com.ngoopy.movieku.data.source.remote.response.ListPopularMoviesResponse

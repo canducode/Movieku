@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.ngoopy.movieku.R
-import com.ngoopy.movieku.data.Entity.ListMoviesEntity
-import com.ngoopy.movieku.data.Entity.MovieEntity
+import com.ngoopy.movieku.data.entity.ListMoviesEntity
 import com.ngoopy.movieku.databinding.ItemListBinding
 import com.ngoopy.movieku.ui.detail.DetailActivity
 

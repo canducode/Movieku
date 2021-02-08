@@ -1,4 +1,4 @@
-package com.ngoopy.movieku.data.Entity
+package com.ngoopy.movieku.data.entity
 
 data class MovieEntity(
     var image: String,

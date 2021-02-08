@@ -1,10 +1,10 @@
 package com.ngoopy.movieku.data.source
 
 import androidx.lifecycle.LiveData
-import com.ngoopy.movieku.data.Entity.ListMoviesEntity
-import com.ngoopy.movieku.data.Entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.Entity.MovieEntity
-import com.ngoopy.movieku.data.Entity.TVShowEntity
+import com.ngoopy.movieku.data.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.entity.MovieEntity
+import com.ngoopy.movieku.data.entity.TVShowEntity
 
 interface MoviekuDataSource {
     fun getPopularMovies(): LiveData<List<ListMoviesEntity>>
