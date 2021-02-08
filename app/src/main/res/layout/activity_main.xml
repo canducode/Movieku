@@ -9,6 +9,7 @@
     android:background="?attr/background">
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabsMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabTextColor="?android:attr/textColor"
@@ -16,6 +17,7 @@
         app:tabIndicatorColor="@color/tab_indi"/>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

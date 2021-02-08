@@ -6,6 +6,7 @@
     android:background="?attr/background">
 
     <ImageView
+        android:id="@+id/ivImageBlur"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/ivImage"
@@ -58,6 +59,7 @@
                     android:src="@drawable/ic_baseline_date"
                     tools:ignore="ContentDescription" />
                 <TextView
+                    android:id="@+id/tvReleaseDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?android:attr/textColor"
@@ -72,6 +74,7 @@
                     android:src="@drawable/ic_baseline_genre"
                     tools:ignore="ContentDescription" />
                 <TextView
+                    android:id="@+id/tvGenre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?android:attr/textColor"
@@ -86,6 +89,7 @@
                     android:src="@drawable/ic_baseline_duration"
                     tools:ignore="ContentDescription" />
                 <TextView
+                    android:id="@+id/tvDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?android:attr/textColor"
@@ -93,13 +97,14 @@
                     android:textStyle="bold"
                     tools:text="00:00" />
             </TableRow>
-            <TableRow android:gravity="center">
+            <TableRow android:id="@+id/trNetwork" android:gravity="center">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_baseline_network"
                     tools:ignore="ContentDescription" />
                 <ImageView
+                    android:id="@+id/ivNetwork"
                     android:layout_width="37dp"
                     android:layout_height="27dp"
                     tools:src="@color/black"
@@ -124,6 +129,7 @@
             app:cpb_round_border="true" />
 
         <TextView
+            android:id="@+id/tvUserScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/cpbUserScore"
@@ -138,6 +144,7 @@
             tools:ignore="SmallSp" />
 
         <TextView
+            android:id="@+id/tvKilasan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
