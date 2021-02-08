@@ -44,7 +44,7 @@ class MovieViewModelTest {
         `when`(moviekuRepository.getPopularMovies()).thenReturn(movies)
         val listMoviesEntity = viewModel.getPopularMovies().value
         verify(moviekuRepository).getPopularMovies()
-        assertNotNull(listMoviesEntity) // <- Mengecek Bahwa Data Tidak Null
+        assertNotNull(listMoviesEntity) // <- Memastikan Bahwa Data Tidak Null
         assertEquals(12, listMoviesEntity?.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
 
         viewModel.getPopularMovies().observeForever(observer)
