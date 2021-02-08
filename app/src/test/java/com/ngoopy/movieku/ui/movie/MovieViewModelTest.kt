@@ -37,21 +37,17 @@ class MovieViewModelTest {
 
     @Test
     fun getMovies() {
-        val dummyMovies = DataDummy.generateDummyListMovie()
+        val dummyMovies = DataDummy.generateDummyListMovie() // <- Mengambil Data Dummy
         val movies = MutableLiveData<List<ListMoviesEntity>>()
         movies.value = dummyMovies
 
         `when`(moviekuRepository.getPopularMovies()).thenReturn(movies)
         val listMoviesEntity = viewModel.getPopularMovies().value
         verify(moviekuRepository).getPopularMovies()
-        assertNotNull(listMoviesEntity)
-        assertEquals(12, listMoviesEntity?.size)
+        assertNotNull(listMoviesEntity) // <- Mengecek Bahwa Data Tidak Null
+        assertEquals(12, listMoviesEntity?.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
 
         viewModel.getPopularMovies().observeForever(observer)
         verify(observer).onChanged(dummyMovies)
-
-/*        val movieEntity = viewModel.getMovies()  // <- Mengambil Data
-        assertNotNull(movieEntity) // <- Mengecek Bahwa Data Tidak Null
-        assertEquals(12, movieEntity.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
-    */}
+    }
 }
