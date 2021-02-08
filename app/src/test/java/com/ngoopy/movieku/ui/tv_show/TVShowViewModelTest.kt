@@ -44,8 +44,8 @@ class TVShowViewModelTest {
         `when`(moviekuRepository.getPopularTVShows()).thenReturn(tvshows)
         val listTVShowsEntity = viewModel.getPopularTVShow().value
         verify(moviekuRepository).getPopularTVShows()
-        assertNotNull(listTVShowsEntity)
-        assertEquals(11, listTVShowsEntity?.size)
+        assertNotNull(listTVShowsEntity) // <- Mengecek Bahwa Data Tidak Null
+        assertEquals(11, listTVShowsEntity?.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
 
         viewModel.getPopularTVShow().observeForever(observer)
         verify(observer).onChanged(dummyTVShows)
