@@ -2,10 +2,10 @@ package com.ngoopy.movieku.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.ngoopy.movieku.data.entity.ListMoviesEntity
-import com.ngoopy.movieku.data.entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.entity.MovieEntity
-import com.ngoopy.movieku.data.entity.TVShowEntity
+import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.source.local.entity.MovieEntity
+import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
 import com.ngoopy.movieku.data.source.remote.RemoteDataSource
 import com.ngoopy.movieku.utils.LiveDataTestUtil
 import com.nhaarman.mockitokotlin2.verify

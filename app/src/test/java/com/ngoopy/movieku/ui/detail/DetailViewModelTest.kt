@@ -3,12 +3,10 @@ package com.ngoopy.movieku.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.test.espresso.IdlingRegistry
-import com.ngoopy.movieku.data.entity.MovieEntity
-import com.ngoopy.movieku.data.entity.TVShowEntity
-import com.ngoopy.movieku.data.source.MoviekuRepository
+import com.ngoopy.movieku.data.source.local.entity.MovieEntity
+import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
+import com.ngoopy.movieku.data.MoviekuRepository
 import com.ngoopy.movieku.utils.DataDummy
-import com.ngoopy.movieku.utils.EspressoIdlingResource
 import org.junit.Before
 import org.junit.Test
 

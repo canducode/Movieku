@@ -2,7 +2,7 @@ package com.ngoopy.movieku.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ngoopy.movieku.data.source.MoviekuRepository
+import com.ngoopy.movieku.data.MoviekuRepository
 import com.ngoopy.movieku.di.Injection
 import com.ngoopy.movieku.ui.detail.DetailViewModel
 import com.ngoopy.movieku.ui.movie.MovieViewModel

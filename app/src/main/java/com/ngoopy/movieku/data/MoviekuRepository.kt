@@ -1,13 +1,14 @@
-package com.ngoopy.movieku.data.source
+package com.ngoopy.movieku.data
 
 import androidx.lifecycle.LiveData
-import com.ngoopy.movieku.data.entity.ListMoviesEntity
-import com.ngoopy.movieku.data.entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.entity.MovieEntity
-import com.ngoopy.movieku.data.entity.TVShowEntity
+import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.source.local.entity.MovieEntity
+import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
 import com.ngoopy.movieku.data.source.remote.RemoteDataSource
 
-class MoviekuRepository private constructor(private val remoteDataSource: RemoteDataSource) : MoviekuDataSource {
+class MoviekuRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+    MoviekuDataSource {
     companion object {
         @Volatile
         private var instance: MoviekuRepository? = null

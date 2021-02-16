@@ -3,8 +3,8 @@ package com.ngoopy.movieku.ui.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.ngoopy.movieku.data.entity.ListMoviesEntity
-import com.ngoopy.movieku.data.source.MoviekuRepository
+import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.MoviekuRepository
 import com.ngoopy.movieku.utils.DataDummy
 import org.junit.Before
 import org.junit.Test

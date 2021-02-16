@@ -3,8 +3,8 @@ package com.ngoopy.movieku.ui.tv_show
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.ngoopy.movieku.data.entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.source.MoviekuRepository
+import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.MoviekuRepository
 import com.ngoopy.movieku.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before

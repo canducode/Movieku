@@ -1,9 +1,9 @@
 package com.ngoopy.movieku.utils
 
-import com.ngoopy.movieku.data.entity.ListMoviesEntity
-import com.ngoopy.movieku.data.entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.entity.MovieEntity
-import com.ngoopy.movieku.data.entity.TVShowEntity
+import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.source.local.entity.MovieEntity
+import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
 import kotlin.random.Random
 
 object DataDummy {
@@ -12,12 +12,14 @@ object DataDummy {
         val movie = ArrayList<ListMoviesEntity>()
 
         for (i in generateDummyMovie()) {
-            movie.add(ListMoviesEntity(
+            movie.add(
+                ListMoviesEntity(
                 Random.nextInt(1000),
                 i.title,
                 i.release_date,
                 i.image
-            ))
+            )
+            )
         }
 
         return movie
@@ -177,12 +179,14 @@ object DataDummy {
         val tvShow = ArrayList<ListTVShowsEntity>()
 
         for (i in generateDummyTVShow()) {
-            tvShow.add(ListTVShowsEntity(
+            tvShow.add(
+                ListTVShowsEntity(
                 Random.nextInt(1000),
                 i.title,
                 "${Random.nextInt(30)}/${Random.nextInt(12)}/${Random.nextInt(2000,2020)}",
                 i.image
-            ))
+            )
+            )
         }
 
         return tvShow

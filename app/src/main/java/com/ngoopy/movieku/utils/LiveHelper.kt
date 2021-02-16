@@ -3,10 +3,10 @@ package com.ngoopy.movieku.utils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ngoopy.movieku.data.entity.ListMoviesEntity
-import com.ngoopy.movieku.data.entity.ListTVShowsEntity
-import com.ngoopy.movieku.data.entity.MovieEntity
-import com.ngoopy.movieku.data.entity.TVShowEntity
+import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
+import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
+import com.ngoopy.movieku.data.source.local.entity.MovieEntity
+import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
 import com.ngoopy.movieku.data.source.remote.response.DetailMovieResponse
 import com.ngoopy.movieku.data.source.remote.response.DetailTVShowResponse
 import com.ngoopy.movieku.data.source.remote.response.ListPopularMoviesResponse
@@ -35,13 +35,15 @@ class LiveHelper {
                         override fun onResponse(call: Call<ListPopularMoviesResponse>, response: Response<ListPopularMoviesResponse>) {
                             val movies = ArrayList<ListMoviesEntity>()
                             for (responses in response.body()?.results!!) {
-                                movies.add(ListMoviesEntity(
+                                movies.add(
+                                    ListMoviesEntity(
                                         responses.id,
                                         responses.title,
                                         responses.releaseDate,
                                         "$BASE_IMAGE_URL${responses.posterPath}",
 
-                                ))
+                                )
+                                )
                             }
                             list.postValue(movies)
                             EspressoIdlingResource.decrement()
@@ -106,12 +108,14 @@ class LiveHelper {
                     ) {
                         val tvshows = ArrayList<ListTVShowsEntity>()
                         for (responses in response.body()?.results!!) {
-                            tvshows.add(ListTVShowsEntity(
+                            tvshows.add(
+                                ListTVShowsEntity(
                                 responses.id,
                                 responses.name,
                                 responses.firstAirDate,
                                 "$BASE_IMAGE_URL${responses.posterPath}",
-                            ))
+                            )
+                            )
                         }
                         list.postValue(tvshows)
                         EspressoIdlingResource.decrement()
