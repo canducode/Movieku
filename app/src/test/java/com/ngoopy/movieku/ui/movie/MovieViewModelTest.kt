@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
 import com.ngoopy.movieku.data.MoviekuRepository
-import com.ngoopy.movieku.utils.DataDummy
 import com.ngoopy.movieku.vo.Resource
 import org.junit.Before
 import org.junit.Test
@@ -53,25 +52,11 @@ class MovieViewModelTest {
         `when`(moviekuRepository.getPopularMovies()).thenReturn(movies)
         val moviesEntity = viewModel.getPopularMovies().value?.data
         verify(moviekuRepository).getPopularMovies()
-        assertNotNull(moviesEntity)
-        assertEquals(11, moviesEntity?.size)
+        assertNotNull(moviesEntity) // <- Memastikan Bahwa Data Tidak Null
+        assertEquals(11, moviesEntity?.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
 
         viewModel.getPopularMovies().observeForever(observerPopular)
         verify(observerPopular).onChanged(dummyMovies)
-
-        /*
-        val dummyMovies = DataDummy.generateDummyListMovie() // <- Mengambil Data Dummy
-        val movies = MutableLiveData<List<ListMoviesEntity>>()
-        movies.value = dummyMovies
-
-        `when`(moviekuRepository.getPopularMovies()).thenReturn(movies)
-        val listMoviesEntity = viewModel.getPopularMovies().value
-        verify(moviekuRepository).getPopularMovies()
-        assertNotNull(listMoviesEntity) // <- Memastikan Bahwa Data Tidak Null
-        assertEquals(12, listMoviesEntity?.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
-
-        viewModel.getPopularMovies().observeForever(observer)
-        verify(observer).onChanged(dummyMovies)*/
     }
 
     @Test
@@ -84,8 +69,8 @@ class MovieViewModelTest {
         `when`(moviekuRepository.getBookmarkedMovies()).thenReturn(movies)
         val moviesEntity = viewModel.getBookmarkedMovies().value
         verify(moviekuRepository).getBookmarkedMovies()
-        assertNotNull(moviesEntity)
-        assertEquals(11, moviesEntity?.size)
+        assertNotNull(moviesEntity) // <- Memastikan Bahwa Data Tidak Null
+        assertEquals(11, moviesEntity?.size) // <- Membandingkan banyak data dengan expektasi hasil yang diharapkan
 
         viewModel.getBookmarkedMovies().observeForever(observerBookmark)
         verify(observerBookmark).onChanged(dummyMovies)

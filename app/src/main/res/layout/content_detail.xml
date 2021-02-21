@@ -167,6 +167,6 @@
         android:src="@drawable/ic_favorite_border"
         app:backgroundTint="@color/base"
         app:tint="@color/tab_indi"
-        />
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

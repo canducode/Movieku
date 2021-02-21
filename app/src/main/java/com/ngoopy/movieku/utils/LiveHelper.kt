@@ -7,7 +7,6 @@ import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
 import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
 import com.ngoopy.movieku.data.source.local.entity.MovieEntity
 import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
-import com.ngoopy.movieku.data.source.remote.ApiResponse
 import com.ngoopy.movieku.data.source.remote.response.DetailMovieResponse
 import com.ngoopy.movieku.data.source.remote.response.DetailTVShowResponse
 import com.ngoopy.movieku.data.source.remote.response.ListPopularMoviesResponse

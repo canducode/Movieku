@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
 import com.ngoopy.movieku.data.MoviekuRepository
-import com.ngoopy.movieku.utils.DataDummy
 import com.ngoopy.movieku.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
