@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "movieentities")
+@Entity(tableName = "detailmovie")
 data class MovieEntity(
     @PrimaryKey
     @NonNull

@@ -7,6 +7,7 @@ import com.ngoopy.movieku.data.source.local.entity.ListMoviesEntity
 import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
 import com.ngoopy.movieku.data.source.local.entity.MovieEntity
 import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
+import com.ngoopy.movieku.data.source.remote.ApiResponse
 import com.ngoopy.movieku.data.source.remote.response.DetailMovieResponse
 import com.ngoopy.movieku.data.source.remote.response.DetailTVShowResponse
 import com.ngoopy.movieku.data.source.remote.response.ListPopularMoviesResponse
@@ -56,11 +57,11 @@ class LiveHelper {
         return list
     }
 
-    fun loadDetailMovie(theId: Int) : LiveData<MovieEntity> {
+    fun loadDetailMovie(movieId: Int) : LiveData<MovieEntity> {
         EspressoIdlingResource.increment()
         val movie = MutableLiveData<MovieEntity>()
         try {
-            ApiConfig.getApiService().getDetailMovie(theId)
+            ApiConfig.getApiService().getDetailMovie(movieId)
                 .enqueue(object : Callback<DetailMovieResponse> {
                     override fun onFailure(call: Call<DetailMovieResponse>, t: Throwable) {
                         Log.e(TAG, t.message.toString())
@@ -73,6 +74,7 @@ class LiveHelper {
                     ) {
                         movie.postValue(
                             MovieEntity(
+                                response.body()?.id!!.toInt(),
                                 "$BASE_IMAGE_URL${response.body()?.posterPath.toString()}",
                                 response.body()?.title.toString(),
                                 response.body()?.releaseDate.toString(),
@@ -127,11 +129,11 @@ class LiveHelper {
         return list
     }
 
-    fun loadDetailTVShow(theId: Int) : LiveData<TVShowEntity> {
+    fun loadDetailTVShow(TVShowId: Int) : LiveData<TVShowEntity> {
         EspressoIdlingResource.increment()
         val tvshow = MutableLiveData<TVShowEntity>()
         try {
-            ApiConfig.getApiService().getDetailTVShow(theId)
+            ApiConfig.getApiService().getDetailTVShow(TVShowId)
                 .enqueue(object : Callback<DetailTVShowResponse> {
                     override fun onFailure(call: Call<DetailTVShowResponse>, t: Throwable) {
                         Log.e(TAG, t.message.toString())
@@ -144,6 +146,7 @@ class LiveHelper {
                     ) {
                         tvshow.postValue(
                             TVShowEntity(
+                                response.body()?.id!!.toInt(),
                                 "$BASE_IMAGE_URL${response.body()?.posterPath.toString()}",
                                 response.body()?.name.toString(),
                                 response.body()?.genres?.get(0)?.name.toString(),

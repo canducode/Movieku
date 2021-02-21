@@ -29,7 +29,7 @@ object DataDummy {
         val movie = ArrayList<MovieEntity>()
 
         movie.add(
-            MovieEntity(
+            MovieEntity(0,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tK1zy5BsCt1J4OzoDicXmr0UTFH.jpg",
             "The Croods: A New Age",
             "23 Desember 2020",
@@ -41,7 +41,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(1,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/s2PPk1w6p6RhbPrZPizZ90ISdWh.jpg",
             "Honest Thief",
             "16 Oktober 2020",
@@ -53,7 +53,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(2,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
                 "Tenet",
                 "26 Agustus 2020",
@@ -65,7 +65,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(3,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2AwPvNHphpZBJDqjZKVuMAbvS0v.jpg",
                 "Wander",
                 "4 Desember 2020",
@@ -77,7 +77,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(4,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/wVu2B58T61LAMiY68hxAA2NLcr9.jpg",
                 "Greenland",
                 "29 Juli 2020",
@@ -89,7 +89,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(5,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg",
                 "Jiu Jitsu",
                 "20 November 2020",
@@ -101,7 +101,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(6,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg",
                 "Fatman",
                 "26 November 2020",
@@ -113,7 +113,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(7,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/di1bCAfGoJ0BzNEavLsPyxQ2AaB.jpg",
                 "Wonder Woman 1984",
                 "25 Desember 2020",
@@ -125,7 +125,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(8,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/chGTXsvn53XvEnvsJ9ZD9eiYKx9.jpg",
                 "Arthur & Merlin, Knights of Camelot",
                 "28 Mei 2020",
@@ -137,7 +137,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(9,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1f3qspv64L5FXrRy0MF8X92ieuw.jpg",
                 "Monsters of Man",
                 "8 Desember 2020",
@@ -149,7 +149,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(10,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/cLDPLia17AwMqSaRHccyAlInkch.jpg",
                 "Heavenquest: A Pilgrim's Progress",
                 "13 Juli 2020",
@@ -161,7 +161,7 @@ object DataDummy {
         )
 
         movie.add(
-            MovieEntity(
+            MovieEntity(11,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/lhMIra0pqWNuD6CIXoTmGwZ0EBS.jpg",
                 "The Craft: Legacy",
                 "28 Oktober 2020",
@@ -196,7 +196,7 @@ object DataDummy {
         val tvShow = ArrayList<TVShowEntity>()
 
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(0,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/BbNvKCuEF4SRzFXR16aK6ISFtR.jpg",
                 "The Mandalorian",
                 "Fantasy, Aksi, Petualangan",
@@ -208,7 +208,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(1,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/z1K4mJwISETia59rrnMdXxzoSrZ.jpg",
                 "The Good Doctor",
                 "Drama",
@@ -220,7 +220,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(2,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
             "Grey's Anatomy",
             "Drama",
@@ -232,7 +232,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(3,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mYsWyfiIMxx4HDm0Wck7oJ9ckez.jpg",
             "Selena: The Series",
                 "Drama",
@@ -244,7 +244,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(4,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1sBx2Ew4WFsa1YY32vlHt079O03.jpg",
             "Lucifer",
                 "Kejahatan, Sci-fi, Fantasi",
@@ -256,7 +256,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(5,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4G2aJJs1lXoS0n6ftZglkXtZpc6.jpg",
             "Industry",
                 "Drama",
@@ -268,7 +268,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(6,
 "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gmL6MSH3jK2T7zYvzo9dIZb393c.jpg",
                 "30 Monedas",
                 "Kejahatan, Mesteri, Drama",
@@ -280,7 +280,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(7,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/g6tIKGc3f1H5QMz1dcgCwADKpZ7.jpg",
             "His Dark Materials",
                 "Drama, Sci-fi, Fantasy",
@@ -292,7 +292,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(8,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6zBWSuYW3Ps1nTfeMS8siS4KUaA.jpg",
                 "Riverdale",
                 "Drama, Misteri",
@@ -304,7 +304,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(9,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/v0G8cbPtGoiTBFb4HW1hAJJFMol.jpg",
             "SEAL Team",
                 "Aksi, Drama, Kejahatan, Politik",
@@ -316,7 +316,7 @@ object DataDummy {
         )
         )
         tvShow.add(
-            TVShowEntity(
+            TVShowEntity(10,
             "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
             "The Queen's Gambit",
                 "Drama",

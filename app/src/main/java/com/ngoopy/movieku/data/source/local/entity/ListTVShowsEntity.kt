@@ -7,7 +7,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "listtvshowsentities")
+@Entity(tableName = "populartvshows")
 @Parcelize
 data class ListTVShowsEntity(
     @PrimaryKey
@@ -22,5 +22,8 @@ data class ListTVShowsEntity(
     var first_release_date: String,
 
     @ColumnInfo(name = "poster_image")
-    var poster_image: String
+    var poster_image: String,
+
+    @ColumnInfo(name = "bookmarked")
+    var bookmarked: Boolean = false
 ) : Parcelable

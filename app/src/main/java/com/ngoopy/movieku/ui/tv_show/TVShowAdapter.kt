@@ -3,6 +3,8 @@ package com.ngoopy.movieku.ui.tv_show
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -11,30 +13,40 @@ import com.ngoopy.movieku.data.source.local.entity.ListTVShowsEntity
 import com.ngoopy.movieku.databinding.ItemListBinding
 import com.ngoopy.movieku.ui.detail.DetailActivity
 
-class TVShowAdapter : RecyclerView.Adapter<TVShowAdapter.TVShowHolder>() {
-    private var listTVShow = ArrayList<ListTVShowsEntity>()
+class TVShowAdapter : PagedListAdapter<ListTVShowsEntity, TVShowAdapter.TVShowHolder>(DIFF_CALLBACK) {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListTVShowsEntity>() {
+            override fun areItemsTheSame(
+                oldItem: ListTVShowsEntity,
+                newItem: ListTVShowsEntity
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setTVShows(tvshows: List<ListTVShowsEntity>?) {
-        if (tvshows == null) return
-        listTVShow.clear()
-        listTVShow.addAll(tvshows)
+            override fun areContentsTheSame(
+                oldItem: ListTVShowsEntity,
+                newItem: ListTVShowsEntity
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     class TVShowHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(tvshow: ListTVShowsEntity) {
             with (binding) {
                 tvTitle.text = tvshow.title
-                tvDate.text = tvshow.first_release_data
+                tvDate.text = tvshow.first_release_date
                 Glide.with(root.context)
                     .load(tvshow.poster_image)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(ivImage)
-
-                root.setOnClickListener {
-                    @Suppress("DEPRECATION") val intentGoToDetail = Intent(root.context, DetailActivity::class.java).apply {
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailActivity::class.java).apply {
                         putExtra(DetailActivity.EXTRA_THEID, tvshow.id)
+                        putExtra(DetailActivity.EXTRA_STATE, tvshow.bookmarked)
                     }
-                    root.context.startActivity(intentGoToDetail)
+                    itemView.context.startActivity(intent)
                 }
             }
         }
@@ -46,8 +58,9 @@ class TVShowAdapter : RecyclerView.Adapter<TVShowAdapter.TVShowHolder>() {
     }
 
     override fun onBindViewHolder(holder: TVShowHolder, position: Int) {
-        holder.bind(listTVShow[position])
+        val tvshow = getItem(position)
+        if (tvshow != null) {
+            holder.bind(tvshow)
+        }
     }
-
-    override fun getItemCount() = listTVShow.size
 }

@@ -3,6 +3,7 @@ package com.ngoopy.movieku.ui.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,48 +14,61 @@ import com.ngoopy.movieku.databinding.ActivityDetailBinding
 import com.ngoopy.movieku.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailBinding
+    private var _binding: ActivityDetailBinding? = null
+    private val binding get() = _binding
+
+    private lateinit var viewModel: DetailViewModel
+    private var state = false
+    private lateinit var type: String
 
     companion object {
         const val EXTRA_TYPE = "extra_type"
-        const val EXTRA_THEID = "extra_THEID"
+        const val EXTRA_THEID = "extra_theid"
+        const val EXTRA_STATE = "extra_state"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         supportActionBar?.hide()
-        binding.toolbarDetail.setNavigationOnClickListener { finish() }
+        binding?.toolbarDetail?.setNavigationOnClickListener { finish() }
 
-        val factory = ViewModelFactory.getInstance()
-        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
-            val type = extras.getString(EXTRA_TYPE,"TV Show")
-            binding.toolbarDetail.title = "Detail $type"
+            state = extras.getBoolean(EXTRA_STATE)
+            if (state) binding?.contentDetail?.btnFavorite?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
 
-            binding.shimmerLoading.startShimmer()
+            type = extras.getString(EXTRA_TYPE,"TV Show")
+            binding?.toolbarDetail?.title = "Detail $type"
+
+            binding?.shimmerLoading?.startShimmer()
             val theId = extras.getInt(EXTRA_THEID)
             if (type == "Movie"){
-                viewModel.getMovie(theId).observe(this, {
-                    if (it != null) {
-                        setMovie(it)
+                viewModel.getDetailMovie(theId).observe(this, {
+                    if (it.data != null) {
+                        setMovie(it.data)
                     }
                 })
             } else {
-                viewModel.getTVShow(theId).observe(this, {
-                    if (it != null) {
-                        setTVShow(it)
+                viewModel.getDetailTVShow(theId).observe(this, {
+                    if (it.data != null) {
+                        setTVShow(it.data)
                     }
                 })
             }
         }
+
+        binding?.contentDetail?.btnFavorite?.setOnClickListener {
+            setBookmarkState()
+        }
     }
 
     private fun setMovie(movieEntity: MovieEntity) {
-        binding.contentDetail.trNetwork.visibility = View.GONE
+        binding?.contentDetail?.trNetwork?.visibility = View.GONE
         setData(movieEntity.image, movieEntity.title, movieEntity.release_date, movieEntity.genre, movieEntity.duration, movieEntity.kilasan, movieEntity.user_score)
     }
 
@@ -63,11 +77,11 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this)
             .load(tvShowEntity.network)
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
-            .into(binding.contentDetail.ivNetwork)
+            .into(binding?.contentDetail!!.ivNetwork)
     }
 
     private fun setData(image: String, title: String, release: String, genre: String, duration: String, kilasan: String, user_score: Float) {
-        binding.contentDetail.apply {
+        binding?.contentDetail?.apply {
             Glide.with(this@DetailActivity)
                 .load(image)
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
@@ -86,10 +100,23 @@ class DetailActivity : AppCompatActivity() {
             cpbUserScore.progress = user_score
         }
 
-        binding.apply {
+        binding?.apply {
             shimmerLoading.stopShimmer()
             shimmerLoading.hideShimmer()
         }
     }
 
+    private fun setBookmarkState() {
+        state = !state
+        if (state) {
+            binding?.contentDetail?.btnFavorite?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
+        } else {
+            binding?.contentDetail?.btnFavorite?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
+        }
+        if (type == "Movie") {
+            viewModel.setBookmarkMovie(intent.extras!!.getInt(EXTRA_THEID), state)
+        } else {
+            viewModel.setBookmarkTVShow(intent.extras!!.getInt(EXTRA_THEID), state)
+        }
+    }
 }

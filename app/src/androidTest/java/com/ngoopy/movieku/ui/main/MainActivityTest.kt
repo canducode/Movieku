@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -52,6 +53,18 @@ class MainActivityTest {
     }
 
     @Test
+    fun loadBookmarksMovie() {
+        onView(withId(R.id.rvMovies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())) // <- Memilih / Klik view dengan index 0
+        onView(withId(R.id.btn_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.menu_favorite)).perform(click())
+        onView(withId(R.id.rvMovies)).check(matches(isDisplayed()))
+        onView(withId(R.id.rvMovies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())) // <- Memilih / Klik view dengan index 0
+        onView(withId(R.id.btn_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
     fun loadTVShow() {
         onView(withText("TV Show")).perform(click()) // <- Memilih / Klik tulisan TV Show
         onView(withId(R.id.rvTvShows)).check(matches(isDisplayed())) // <- Memeriksa apakah view id yang diharapkan tampil
@@ -73,5 +86,19 @@ class MainActivityTest {
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
         onView(withId(R.id.ivNetwork)).check(matches(isDisplayed()))
         onView(withId(R.id.cpbUserScore)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun loadBookmarksTVShow() {
+        onView(withText("TV Show")).perform(click())
+        onView(withId(R.id.rvTvShows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())) // <- Memilih / Klik view dengan index 0
+        onView(withId(R.id.btn_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.menu_favorite)).perform(click())
+        onView(withText("TV Show")).perform(click())
+        onView(withId(R.id.rvTvShows)).check(matches(isDisplayed()))
+        onView(withId(R.id.rvTvShows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())) // <- Memilih / Klik view dengan index 0
+        onView(withId(R.id.btn_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 }

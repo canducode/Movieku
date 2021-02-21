@@ -156,4 +156,17 @@
 
     </RelativeLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ivImage"
+        android:layout_alignBottom="@+id/ivImageBlur"
+        android:layout_marginEnd="-70dp"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/ic_favorite_border"
+        app:backgroundTint="@color/base"
+        app:tint="@color/tab_indi"
+        />
+
 </RelativeLayout>

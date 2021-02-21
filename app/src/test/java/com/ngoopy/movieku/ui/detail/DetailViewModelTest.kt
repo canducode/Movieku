@@ -7,6 +7,7 @@ import com.ngoopy.movieku.data.source.local.entity.MovieEntity
 import com.ngoopy.movieku.data.source.local.entity.TVShowEntity
 import com.ngoopy.movieku.data.MoviekuRepository
 import com.ngoopy.movieku.utils.DataDummy
+import com.ngoopy.movieku.vo.Resource
 import org.junit.Before
 import org.junit.Test
 
@@ -32,16 +33,44 @@ class DetailViewModelTest {
     private lateinit var moviekuRepository: MoviekuRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<MovieEntity>
+    private lateinit var movieObserver: Observer<Resource<MovieEntity>>
 
     @Mock
-    private lateinit var tvshowObserver: Observer<TVShowEntity>
+    private lateinit var tvshowObserver: Observer<Resource<TVShowEntity>>
 
     @Before
     fun setUp() {
         viewModel = DetailViewModel(moviekuRepository)
     }
 
+    @Test
+    fun getDetailMovie() {
+        val dummyMovie = Resource.success(dummyMovie)
+        val movie = MutableLiveData<Resource<MovieEntity>>()
+        movie.value = dummyMovie
+
+        `when`(moviekuRepository.getDetailMovie(position)).thenReturn(movie)
+
+        viewModel.getDetailMovie(position).observeForever(movieObserver)
+
+        verify(movieObserver).onChanged(dummyMovie)
+    }
+
+    @Test
+    fun getDetailTVShow() {
+        val dummyTVShow = Resource.success(dummyTVShow)
+        val tvshow = MutableLiveData<Resource<TVShowEntity>>()
+        tvshow.value = dummyTVShow
+
+        `when`(moviekuRepository.getDetailTVShow(position)).thenReturn(tvshow)
+
+        viewModel.getDetailTVShow(position).observeForever(tvshowObserver)
+
+        verify(tvshowObserver).onChanged(dummyTVShow)
+    }
+
+
+/*
     @Test
     fun getMovie() {
         val movie = MutableLiveData<MovieEntity>()
@@ -87,5 +116,5 @@ class DetailViewModelTest {
 
         viewModel.getTVShow(position).observeForever(tvshowObserver)
         verify(tvshowObserver).onChanged(dummyTVShow)
-    }
+    }*/
 }

@@ -4,42 +4,57 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ngoopy.movieku.databinding.FragmentMovieBinding
 import com.ngoopy.movieku.viewmodel.ViewModelFactory
+import com.ngoopy.movieku.vo.Status
 
-class MovieFragment : Fragment() {
+class MovieFragment(private val favorite: Boolean) : Fragment() {
     private var _binding: FragmentMovieBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+                              savedInstanceState: Bundle?): View? {
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val factory = ViewModelFactory.getInstance()
+            val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
 
             val movieAdapter = MovieAdapter()
-
-            viewModel.getPopularMovies().observe(viewLifecycleOwner, { movies ->
-                if (movies != null) {
-                    movieAdapter.setMovies(movies)
-                    movieAdapter.notifyDataSetChanged()
-                    binding.progressBar.visibility = View.GONE
-                }
-            })
-
-            with(binding.rvMovies) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = movieAdapter
+            if (favorite) {
+                viewModel.getBookmarkedMovies().observe(viewLifecycleOwner, { movies ->
+                    binding?.progressBar?.visibility = View.GONE
+                    movieAdapter.submitList(movies)
+                })
+            } else {
+                viewModel.getPopularMovies().observe(viewLifecycleOwner, { movies ->
+                    if (movies != null) {
+                        when (movies.status) {
+                            Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
+                            Status.SUCCESS -> {
+                                binding?.progressBar?.visibility = View.GONE
+                                movieAdapter.submitList(movies.data)
+                            }
+                            Status.ERROR -> {
+                                binding?.progressBar?.visibility = View.GONE
+                                Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                })
+            }
+            with(binding?.rvMovies) {
+                this?.layoutManager = LinearLayoutManager(context)
+                this?.setHasFixedSize(true)
+                this?.adapter = movieAdapter
             }
         }
     }
