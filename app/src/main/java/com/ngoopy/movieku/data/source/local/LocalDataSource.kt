@@ -26,9 +26,7 @@ class LocalDataSource private constructor(private val mMoviekuDao: MoviekuDao) {
     fun getBookmarkedMovies(): DataSource.Factory<Int, ListMoviesEntity> = mMoviekuDao.getBookmarkedMovies()
     fun insertDetailMovie(movie: MovieEntity) = mMoviekuDao.insertDetailMovie(movie)
     fun getDetailMovie(movieId: Int): LiveData<MovieEntity> = mMoviekuDao.getDetailMovie(movieId)
-    fun setMovieBookmark(movieId: Int, newState: Boolean) {
-        mMoviekuDao.updatePopularMovies(movieId, newState)
-    }
+    fun setMovieBookmark(movieId: Int, newState: Boolean) = mMoviekuDao.updatePopularMovies(movieId, newState)
 
     // TV Shows ----------
     fun insertPopularTVShows(tvshows: List<ListTVShowsEntity>) = mMoviekuDao.insertPopularTVShows(tvshows)
@@ -36,7 +34,5 @@ class LocalDataSource private constructor(private val mMoviekuDao: MoviekuDao) {
     fun getBookmarkedTVShows(): DataSource.Factory<Int, ListTVShowsEntity> = mMoviekuDao.getBookmarkedTVShows()
     fun insertDetailTVShow(tvshow: TVShowEntity) = mMoviekuDao.insertDetailTVShow(tvshow)
     fun getDetailTVShow(tvshowId: Int): LiveData<TVShowEntity> = mMoviekuDao.getDetailTVShow(tvshowId)
-    fun setTVShowsBookmark(tvshowId: Int, newState: Boolean) {
-        mMoviekuDao.updatePopularTVShows(tvshowId, newState)
-    }
+    fun setTVShowsBookmark(tvshowId: Int, newState: Boolean) = mMoviekuDao.updatePopularTVShows(tvshowId, newState)
 }

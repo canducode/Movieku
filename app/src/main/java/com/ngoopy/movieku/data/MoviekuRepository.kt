@@ -80,7 +80,7 @@ class MoviekuRepository private constructor(
     }
 
     override fun setMovieBookmark(movieId: Int, state: Boolean) =
-            appExecutors.diskIO().execute { localDataSource.setMovieBookmark(movieId, state) }
+        appExecutors.diskIO().execute { localDataSource.setMovieBookmark(movieId, state) }
 
     override fun getBookmarkedMovies(): LiveData<PagedList<ListMoviesEntity>> {
         val config = PagedList.Config.Builder()

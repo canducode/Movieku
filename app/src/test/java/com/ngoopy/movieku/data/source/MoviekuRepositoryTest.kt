@@ -18,6 +18,7 @@ import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
@@ -26,6 +27,7 @@ class MoviekuRepositoryTest {
     private val local = mock(LocalDataSource::class.java)
     private val appExecutors = mock(AppExecutors::class.java)
     private val moviekuRepository = FakeMoviekuRepository(remote, local, appExecutors)
+    private val fakeMoviekuRepository = mock(FakeMoviekuRepository::class.java)
     private val movieId = 464052
     private val tvshowId = 85271
 
@@ -109,5 +111,25 @@ class MoviekuRepositoryTest {
         verify(local).getBookmarkedTVShows()
         assertNotNull(tvShowsEntity)
         assertEquals(tvshowResponse.size.toLong(), tvShowsEntity.data?.size?.toLong())
+    }
+
+    @Test
+    fun setMovieBookmark() {
+        val mockRepository = fakeMoviekuRepository
+        Mockito.doNothing().`when`(mockRepository).setMovieBookmark(movieId, true)
+        mockRepository.setMovieBookmark(movieId, true)
+
+        verify(mockRepository).setMovieBookmark(movieId, true)
+        Mockito.verify(mockRepository, Mockito.times(1)).setMovieBookmark(movieId, true)
+    }
+
+    @Test
+    fun setTVShowBookmark() {
+        val mockRepository = fakeMoviekuRepository
+        Mockito.doNothing().`when`(mockRepository).setTVShowBookmark(tvshowId, true)
+        mockRepository.setTVShowBookmark(tvshowId, true)
+
+        verify(mockRepository).setTVShowBookmark(tvshowId, true)
+        Mockito.verify(mockRepository, Mockito.times(1)).setTVShowBookmark(tvshowId, true)
     }
 }
